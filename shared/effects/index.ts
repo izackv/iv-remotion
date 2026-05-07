@@ -1,0 +1,1 @@
+export { VintageOverlay } from "./VintageOverlay";

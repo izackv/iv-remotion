@@ -1,0 +1,16 @@
+[
+  { "text": "docker build -t myapp .", "startTime": 0.5, "typed": true, "typingSpeed": 25, "prompt": "$ " },
+  { "text": "Sending build context to Docker daemon  2.56kB", "startTime": 2.5, "color": "#5c6370" },
+  { "text": "Step 1/5 : FROM node:18-alpine", "startTime": 3.0 },
+  { "text": " ---> Using cache", "startTime": 3.3, "color": "#98c379" },
+  { "text": "Step 2/5 : COPY package*.json ./", "startTime": 3.6 },
+  { "text": " ---> Using cache", "startTime": 3.9, "color": "#98c379" },
+  { "text": "Step 3/5 : RUN npm ci --production", "startTime": 4.2 },
+  { "text": " ---> Running in a3f2b1c9d8e7", "startTime": 4.5, "color": "#61afef" },
+  { "text": "Step 4/5 : COPY . .", "startTime": 5.5 },
+  { "text": "Step 5/5 : CMD [\"node\", \"server.js\"]", "startTime": 5.8 },
+  { "text": "Successfully built 7a8b9c0d1e2f", "startTime": 6.3, "bold": true, "color": "#98c379" },
+  { "text": "Successfully tagged myapp:latest", "startTime": 6.5, "bold": true, "color": "#98c379" },
+  { "text": "docker run -p 3000:3000 myapp", "startTime": 7.5, "typed": true, "typingSpeed": 25, "prompt": "$ " },
+  { "text": "Server listening on port 3000", "startTime": 9.0, "bold": true, "color": "#56b6c2" }
+]
