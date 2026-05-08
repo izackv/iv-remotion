@@ -115,15 +115,7 @@ export const RemotionRoot: React.FC = () => (
         id="Counter"
         component={CounterDemo}
         schema={counterDemoSchema}
-        defaultProps={{
-          branding: { preset: "redhat-light" as const },
-          counters: [
-            { value: 2.4, prefix: "$", suffix: "M", label: "Revenue", decimals: 1, startFrom: 0, animationDelay: 0, duration: 2 },
-            { value: 1250, prefix: "", suffix: "+", label: "Customers", decimals: 0, startFrom: 0, animationDelay: 0, duration: 2 },
-            { value: 99.9, prefix: "", suffix: "%", label: "Uptime", decimals: 1, startFrom: 0, animationDelay: 0, duration: 2 },
-          ],
-          title: "Key Metrics",
-        }}
+        defaultProps={{"branding":{"preset":"redhat-light" as const},"counters":[{"value":2.4,"prefix":"$","suffix":"M","label":"Revenue","decimals":1,"startFrom":0,"animationDelay":0,"duration":2},{"value":1250,"prefix":"","suffix":"+","label":"Customers","decimals":0,"startFrom":0,"animationDelay":0,"duration":2},{"value":99.9,"prefix":"","suffix":"%","label":"Uptime","decimals":1,"startFrom":0,"animationDelay":0,"duration":2}],"title":"Key Metrics"}}
         durationInFrames={150}
         fps={30}
         width={1920}
@@ -133,15 +125,7 @@ export const RemotionRoot: React.FC = () => (
         id="ProgressBar"
         component={ProgressBarDemo}
         schema={progressBarDemoSchema}
-        defaultProps={{
-          branding: { preset: "redhat-light" as const },
-          bars: [
-            { value: 85, label: "Design", variant: "horizontal" as const, showPercentage: true, thickness: 20, size: 200, animationDelay: 0, duration: 2 },
-            { value: 62, label: "Development", variant: "horizontal" as const, showPercentage: true, thickness: 20, size: 200, animationDelay: 0, duration: 2 },
-            { value: 40, label: "Testing", variant: "horizontal" as const, showPercentage: true, thickness: 20, size: 200, animationDelay: 0, duration: 2 },
-          ],
-          title: "Project Progress",
-        }}
+        defaultProps={{"branding":{"preset":"redhat-light" as const},"bars":[{"value":85,"label":"Design","variant":"horizontal" as const,"showPercentage":true,"thickness":20,"size":200,"animationDelay":0,"duration":2},{"value":62,"label":"Development","variant":"horizontal" as const,"showPercentage":true,"thickness":20,"size":200,"animationDelay":0,"duration":2},{"value":40,"label":"Testing","variant":"horizontal" as const,"showPercentage":true,"thickness":20,"size":200,"animationDelay":0,"duration":2}],"title":"Project Progress"}}
         durationInFrames={150}
         fps={30}
         width={1920}
@@ -151,7 +135,7 @@ export const RemotionRoot: React.FC = () => (
         id="ProgressBarCircular"
         component={ProgressBarDemo}
         schema={progressBarDemoSchema}
-        defaultProps={{"branding":{"preset":"corporate" as const},"bars":[{"value":100,"label":"Sprint Progress","variant":"circular" as const,"showPercentage":true,"thickness":18,"size":280,"animationDelay":0,"duration":4,"phases":[{"label":"Planning","value":15,"color":"#0066cc"},{"label":"Development","value":40,"color":"#3e8635"},{"label":"Testing","value":25,"color":"#f0ab00"},{"label":"Release","value":20,"color":"#ee0000"}]}],"title":"Sprint Progress"}}
+        defaultProps={{"branding":{"preset":"corporate" as const},"bars":[{"value":100,"label":"Sprint Progress","variant":"circular" as const,"showPercentage":true,"thickness":18,"size":280,"animationDelay":0,"duration":4,"phases":[{"label":"Planning","value":15,"color":"#0066cc"},{"label":"Development-2","value":40,"color":"#3e8635"},{"label":"Testing","value":25,"color":"#f0ab00"},{"label":"Release","value":20,"color":"#ee0000"}]}],"title":"Sprint Progress"}}
         durationInFrames={150}
         fps={30}
         width={1920}
@@ -511,17 +495,7 @@ export const RemotionRoot: React.FC = () => (
         id="FlightRoute-Vintage"
         component={FlightRouteDemo}
         schema={flightRouteDemoSchema}
-        defaultProps={{
-          branding: { preset: "corporate" as const },
-          flight: {
-            origin: "New York, USA",
-            destination: "London, UK",
-            mapStyle: "vintage" as const,
-            showAirplane: true,
-            showLabels: true,
-            duration: 6,
-          },
-        }}
+        defaultProps={{"branding":{"preset":"corporate" as const},"flight":{"origin":"sofia","destination":"tel aviv","mapStyle":"vintage" as const,"showAirplane":true,"showLabels":true,"duration":6}}}
         durationInFrames={210}
         fps={30}
         width={1920}
@@ -531,17 +505,7 @@ export const RemotionRoot: React.FC = () => (
         id="FlightRoute-Realistic"
         component={FlightRouteDemo}
         schema={flightRouteDemoSchema}
-        defaultProps={{
-          branding: { preset: "redhat-light" as const },
-          flight: {
-            origin: "San Francisco, USA",
-            destination: "Tokyo, Japan",
-            mapStyle: "realistic" as const,
-            showAirplane: true,
-            showLabels: true,
-            duration: 6,
-          },
-        }}
+        defaultProps={{"branding":{"preset":"redhat-light" as const},"flight":{"origin":"san francisco","destination":"tokyo","mapStyle":"realistic" as const,"showAirplane":true,"showLabels":true,"duration":6}}}
         durationInFrames={210}
         fps={30}
         width={1920}

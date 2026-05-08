@@ -12,7 +12,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import { z } from "zod";
 import { zColor } from "@remotion/zod-types";
-import { geocode, generateArc, computeFitZoom } from "../utils";
+import { geocode, generateArc, computeFitView } from "../utils";
 import { VintageOverlay } from "../effects";
 import { useBranding } from "../branding";
 
@@ -97,15 +97,16 @@ export const FlightRoute: React.FC<FlightRouteData> = ({
           if (cancelled) return;
           const start: [number, number] = [orig.lng, orig.lat];
           const end: [number, number] = [dest.lng, dest.lat];
-          const mid = turf.midpoint(turf.point(start), turf.point(end));
+          const arc = generateArc(start, end, 100);
+          const { center: arcCenter, zoom: arcZoom } = computeFitView(arc);
           setResolved({
             originName: orig.name,
             start,
             destinationName: dest.name,
             end,
-            arcCoordinates: generateArc(start, end, 100),
-            midpoint: mid.geometry.coordinates as [number, number],
-            fitZoom: computeFitZoom(start, end),
+            arcCoordinates: arc,
+            midpoint: arcCenter,
+            fitZoom: arcZoom,
           });
           continueRender(handle!);
         })
@@ -330,12 +331,23 @@ export const FlightRoute: React.FC<FlightRouteData> = ({
     if (showAirplane) {
       const planePoint = turf.along(routeLine, currentDistance);
       const planeCoords = planePoint.geometry.coordinates as [number, number];
-      const lookAheadDist = Math.min(currentDistance + 50, routeDistance);
-      const lookAheadPoint = turf.along(routeLine, lookAheadDist);
-      const bearing = turf.bearing(
-        turf.point(planeCoords),
-        turf.point(lookAheadPoint.geometry.coordinates),
-      );
+      // Use look-ahead for bearing; near the end, use look-behind instead
+      // so the plane keeps its final heading rather than snapping to north
+      let bearing: number;
+      if (currentDistance + 50 < routeDistance) {
+        const lookAheadPoint = turf.along(routeLine, currentDistance + 50);
+        bearing = turf.bearing(
+          turf.point(planeCoords),
+          turf.point(lookAheadPoint.geometry.coordinates),
+        );
+      } else {
+        const lookBehindDist = Math.max(0, currentDistance - 50);
+        const lookBehindPoint = turf.along(routeLine, lookBehindDist);
+        bearing = turf.bearing(
+          turf.point(lookBehindPoint.geometry.coordinates),
+          turf.point(planeCoords),
+        );
+      }
 
       const marker = (map as any)._airplaneMarker as maplibregl.Marker;
       if (marker) {
